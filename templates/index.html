@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MovieVerse - Movie Recommendations</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+
+        <div class="logo">
+            MOVIE<span>VERSE</span>
+        </div>
+
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">Movies</a>
+            <a href="#">Genres</a>
+            <a href="#">About</a>
+        </div>
+
+    </nav>
+
+
+    <!-- Hero Section -->
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <p class="small-title">
+                YOUR PERSONAL MOVIE GUIDE
+            </p>
+
+            <h1>
+                Find Your Next<br>
+                <span>Favourite Movie.</span>
+            </h1>
+
+            <p class="description">
+                Discover movies you'll love based on your favourite films.
+                Choose a movie and let our recommendation system do the rest.
+            </p>
+
+
+            <!-- Movie Selection Form -->
+
+            <form method="POST" class="movie-form">
+
+                <select name="movie" required>
+
+                    <option value="">
+                        Choose a movie
+                    </option>
+
+                    <option value="Inception">
+                        Inception
+                    </option>
+
+                    <option value="Interstellar">
+                        Interstellar
+                    </option>
+
+                    <option value="The Dark Knight">
+                        The Dark Knight
+                    </option>
+
+                    <option value="Avengers: Endgame">
+                        Avengers: Endgame
+                    </option>
+
+                    <option value="The Conjuring">
+                        The Conjuring
+                    </option>
+
+                    <option value="Toy Story">
+                        Toy Story
+                    </option>
+
+                    <option value="The Notebook">
+                        The Notebook
+                    </option>
+
+                    <option value="Jurassic Park">
+                        Jurassic Park
+                    </option>
+
+                    <option value="Harry Potter">
+                        Harry Potter
+                    </option>
+
+                </select>
+
+
+                <button type="submit">
+                    Get Recommendations
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <!-- Recommendations -->
+
+    {% if recommendations %}
+
+    <section class="recommendation-section">
+
+        <div class="section-title">
+
+            <p>
+                BECAUSE YOU WATCHED
+            </p>
+
+            <h2>
+                {{ selected_movie }}
+            </h2>
+
+        </div>
+
+
+        <div class="movie-grid">
+
+            {% for movie in recommendations %}
+
+            <div class="movie-card">
+
+                <img
+                    src="{{ movie.poster }}"
+                    alt="{{ movie.title }} poster"
+                    class="movie-poster"
+                >
+
+                <div class="movie-info">
+
+                    <h3>
+                        {{ movie.title }}
+                    </h3>
+
+                    <p>
+                        Recommended for you
+                    </p>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+    {% endif %}
+
+
+    <!-- Footer -->
+
+    <footer>
+
+        <p>
+            © 2026 MovieVerse | Movie Recommendation System
+        </p>
+
+    </footer>
+
+</body>
+</html>
